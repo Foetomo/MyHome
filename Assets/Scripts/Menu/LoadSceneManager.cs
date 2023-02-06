@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class LoadSceneManager : MonoBehaviour
 {
-    public Slider _musicSlider, _sfxSlider;
-    //public GameObject MuteMusicOn, MuteMusicOff, MuteSfxOn, MuteSfxOff;
+    public Slider _musicSlider, _sfxSlider, _controlSlider;
+    public GameObject muteMusicOn, muteMusicOff, muteSfxOn, muteSfxOff;
     private float valueMusic = 1f;
     private float valueSfx = 1f;
+    private float valueControl = 5f;
+    public static int muteM;
 
     public GameObject menu, mulai, panelOpsi, panelExit, panelHitam;
     public Animator animationPanelOpsi, animationPanelExit;
@@ -19,9 +21,16 @@ public class LoadSceneManager : MonoBehaviour
     {
         valueMusic = PlayerPrefs.GetFloat("VolumeMusic", valueMusic);
         valueSfx = PlayerPrefs.GetFloat("VolumeSfx", valueSfx);
+        valueControl = PlayerPrefs.GetFloat("Control", valueControl);
 
         _sfxSlider.value = valueSfx;
         _musicSlider.value = valueMusic;
+        _controlSlider.value = valueControl;
+    }
+
+    private void Start()
+    {
+        muteM = PlayerPrefs.GetInt("muteMusic", 0);
     }
 
     private void Update()
@@ -40,12 +49,36 @@ public class LoadSceneManager : MonoBehaviour
                 panelHitam.SetActive(false);
             }
         }
+
+        muteMusicOn.SetActive(true);
+
+        if (muteM == 0)
+        {
+            muteMusicOn.SetActive(false);
+            muteMusicOff.SetActive(true);
+        }
+
+        if (muteM == 1)
+        {
+            muteMusicOn.SetActive(true);
+            muteMusicOff.SetActive(false);
+        }
     }
 
     public void ToggleMusic()
     {
         AudioManager.Instance.ToggleMusic();
-        PlayerPrefs.SetInt("MuteMusic", AudioManager.Instance.musicSource.mute ? 1 : 0);
+
+        if (AudioManager.Instance.musicSource.mute)
+        {
+            muteM = 0;
+            PlayerPrefs.SetInt("muteMusic", muteM);
+        }
+        else if (!AudioManager.Instance.musicSource.mute)
+        {
+            muteM = 1;
+            PlayerPrefs.SetInt("muteMusic", muteM);
+        }
     }
 
     public void ToggleSFX()
@@ -63,6 +96,14 @@ public class LoadSceneManager : MonoBehaviour
     {
         AudioManager.Instance.SFXVolume(_sfxSlider.value);
         PlayerPrefs.SetFloat("VolumeSfx", _sfxSlider.value);
+    }
+
+    public void ControlSetting()
+    {
+        //Movement.Instance.SettingSensitivy(_controlSlider.value);
+        //movement.SettingSensitivy(_controlSlider.value);
+        ControlSensitivity.Instance.SettingSensitivy(_controlSlider.value);
+        PlayerPrefs.SetFloat("Control", _controlSlider.value);
     }
 
     public void ButtonMulai()

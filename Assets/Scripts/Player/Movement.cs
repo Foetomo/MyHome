@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Movement : MonoBehaviour
 {
+    public static Movement Instance;
     public ControllerMode controllerMode;
     public GameObject canvasAndroid;
     
@@ -30,6 +31,7 @@ public class Movement : MonoBehaviour
     [Header("Camera")]
     public float minVerticalLook;
     public float maxVerticalLook;
+    [Range(1, 5)]
     public float sensitivty;
     public float smoothLook;
     public Transform CameraHolder;
@@ -231,6 +233,11 @@ public class Movement : MonoBehaviour
         }
 
         return velocity; 
+    }
+
+    public void SettingSensitivy(float range)
+    {
+        sensitivty = range;
     }
 
 

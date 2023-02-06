@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    public GameObject iconMuteOn, iconMuteOff;
 
     private void Awake()
     {
@@ -28,7 +29,13 @@ public class AudioManager : MonoBehaviour
         musicSource.mute = (isMutedMusic == 1);
 
         int isMutedSfx = PlayerPrefs.GetInt("MuteSFX");
-        musicSource.mute = (isMutedSfx == 1);
+        sfxSource.mute = (isMutedSfx == 1);
+
+    }
+
+    private void Update()
+    {
+        PlayerPrefs.SetInt("MuteMusic", musicSource.mute ? 1 : 0);
     }
 
     public void PlayMusic(string nama)
@@ -63,13 +70,11 @@ public class AudioManager : MonoBehaviour
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
-        PlayerPrefs.SetInt("MuteMusic", musicSource.mute ? 1 : 0);
     }
 
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
-        PlayerPrefs.SetInt("MuteSFX", sfxSource.mute ? 1 : 0);
     }
 
     public void MusicVolume(float volume)
