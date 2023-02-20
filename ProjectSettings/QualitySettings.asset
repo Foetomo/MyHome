@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 0
+  m_CurrentQuality: 2
   m_QualitySettings:
   - serializedVersion: 2
     name: Low
@@ -86,18 +86,18 @@ QualitySettings:
     name: High
     pixelLightCount: 2
     shadows: 2
-    shadowResolution: 1
+    shadowResolution: 2
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 40
     shadowNearPlaneOffset: 3
-    shadowCascade2Split: 0.33333334
+    shadowCascade2Split: 0.35301128
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
-    shadowmaskMode: 1
+    shadowmaskMode: 0
     skinWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -121,13 +121,16 @@ QualitySettings:
     - Server
     - iPhone
   m_PerPlatformDefaultQuality:
-    Android: 1
+    Android: 2
+    CloudRendering: 2
+    EmbeddedLinux: 2
+    GameCoreScarlett: 2
+    GameCoreXboxOne: 2
     Lumin: 2
-    Nintendo 3DS: 2
     Nintendo Switch: 2
     PS4: 2
-    PSP2: 1
-    Server: 0
+    PS5: 2
+    Server: 2
     Stadia: 2
     Standalone: 2
     WebGL: 2

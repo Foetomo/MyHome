@@ -20,7 +20,7 @@ public class PlayerInteract : MonoBehaviour
 
     public TextMeshProUGUI interactText;
 
-    public GameObject backgroundText, buttonE;
+    public GameObject backgroundText, backgroundTextRotate, buttonE, buttonRotateKanan, buttonRotateKiri;
 
     public Sprite defaultIcon;
 
@@ -31,6 +31,12 @@ public class PlayerInteract : MonoBehaviour
     public Vector2 defaultInteractIconSize;
 
     private ObjectPickup objectPickup;
+
+
+    private void Start()
+    {
+        
+    }
 
 
     private void Update()
@@ -74,7 +80,8 @@ public class PlayerInteract : MonoBehaviour
                     backgroundText.SetActive(true);
                     buttonE.SetActive(true);
 
-                    interactText.text = io.interaksiTeks;
+                    //interactText.text = io.key;
+                    interactText.text = GameMultiLang.GetTraduction(io.key);
                     successfulHit = true;
 
                     if (Input.GetButtonDown("Interact"))
@@ -86,11 +93,18 @@ public class PlayerInteract : MonoBehaviour
                             if (hit.transform.TryGetComponent(out objectPickup))
                             {
                                 objectPickup.Grab(destinasi);
+                                backgroundTextRotate.SetActive(true);
+                                buttonRotateKanan.SetActive(true);
+                                buttonRotateKiri.SetActive(true);
                             }
+                            
                         }
                         else
                         {
                             objectPickup.Drop();
+                            backgroundTextRotate.SetActive(false);
+                            buttonRotateKanan.SetActive(false);
+                            buttonRotateKiri.SetActive(false);
                             objectPickup = null;
                         }
                         
@@ -132,11 +146,17 @@ public class PlayerInteract : MonoBehaviour
                 if (hit.transform.TryGetComponent(out objectPickup))
                 {
                     objectPickup.Grab(destinasi);
+                    backgroundTextRotate.SetActive(true);
+                    buttonRotateKanan.SetActive(true);
+                    buttonRotateKiri.SetActive(true);
                 }
             }
             else
             {
                 objectPickup.Drop();
+                backgroundTextRotate.SetActive(false);
+                buttonRotateKanan.SetActive(false);
+                buttonRotateKiri.SetActive(false);
                 objectPickup = null;
             }
             hitObjectInteract.Interact();

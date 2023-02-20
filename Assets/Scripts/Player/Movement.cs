@@ -55,6 +55,8 @@ public class Movement : MonoBehaviour
 
     private void Start () {
         charcc = GetComponent<CharacterController>();
+        //control = GetComponent<ControlSensitivity>();
+
         
         if(controllerMode == ControllerMode.PC) { 
             Cursor.visible = true; //menghilangkan cursor atau menyembunyikannya
@@ -68,6 +70,9 @@ public class Movement : MonoBehaviour
 
     private void Update () {
         Inputed();
+        float s = ControlSensitivity.Instance.sensitivity;
+        ControlSensitivity cs = FindObjectOfType<ControlSensitivity>();
+        sensitivty = cs.sensitivity;
     }
 
     private void LateUpdate () {

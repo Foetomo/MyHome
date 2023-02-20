@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,8 @@ public class InteractableObject : MonoBehaviour, Interactable
     public Sprite interaksiIcon;
     public Vector2 iconSize;
     public int ID;
-    public string interaksiTeks;
+    public string key;
+    //public string interaksiTeks;
 
     private void Awake()
     {

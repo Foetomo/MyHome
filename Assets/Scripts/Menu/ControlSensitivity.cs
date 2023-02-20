@@ -24,7 +24,7 @@ public class ControlSensitivity : MonoBehaviour
 
     private void Start()
     {
-        sensitivity = GetComponent<Movement>().sensitivty;
+
     }
 
     public void SettingSensitivy(float range)

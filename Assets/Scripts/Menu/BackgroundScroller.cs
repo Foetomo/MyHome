@@ -12,6 +12,11 @@ public class BackgroundScroller : MonoBehaviour
     private float x, y;
 
     // Update is called once per frame
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         BackgroundBergerak();

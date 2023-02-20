@@ -11,10 +11,10 @@ public class LoadSceneManager : MonoBehaviour
     private float valueMusic = 1f;
     private float valueSfx = 1f;
     private float valueControl = 5f;
-    public static int muteM;
+    public static int muteM, indexOpsi;
 
     public GameObject menu, mulai, panelOpsi, panelExit, panelHitam;
-    public Animator animationPanelOpsi, animationPanelExit;
+    public Animator animationPanelOpsi, animationPanelExit, animationPanelTentang;
     bool isClose = false;
 
     private void Awake()
@@ -22,6 +22,7 @@ public class LoadSceneManager : MonoBehaviour
         valueMusic = PlayerPrefs.GetFloat("VolumeMusic", valueMusic);
         valueSfx = PlayerPrefs.GetFloat("VolumeSfx", valueSfx);
         valueControl = PlayerPrefs.GetFloat("Control", valueControl);
+        indexOpsi = PlayerPrefs.GetInt("saveOpsi", 0);
 
         _sfxSlider.value = valueSfx;
         _musicSlider.value = valueMusic;
@@ -62,6 +63,16 @@ public class LoadSceneManager : MonoBehaviour
         {
             muteMusicOn.SetActive(true);
             muteMusicOff.SetActive(false);
+        }
+
+        if (indexOpsi == 0)
+        {
+            //ButtonCloseOpsi();
+        }
+        
+        if (indexOpsi == 1)
+        {
+            ButtonOpsi();
         }
     }
 
@@ -134,26 +145,32 @@ public class LoadSceneManager : MonoBehaviour
 
     public void ButtonOpsi()
     {
+        indexOpsi = 1;
         //panelOpsi.SetActive(true);
         animationPanelOpsi.Play("Buka");
         panelHitam.SetActive(true);
+        PlayerPrefs.SetInt("saveOpsi", indexOpsi);
     }
 
     public void ButtonCloseOpsi()
     {
+        indexOpsi = 0;
         //panelOpsi.SetActive(false);
         animationPanelOpsi.Play("Tutup");
         panelHitam.SetActive(false);
+        PlayerPrefs.SetInt("saveOpsi", indexOpsi);
     }
 
     public void ButtonTentang()
     {
-
+        animationPanelTentang.Play("Buka");
+        panelHitam.SetActive(true);
     }
 
     public void ButtonCloseTentang()
     {
-
+        animationPanelTentang.Play("Tutup");
+        panelHitam.SetActive(false);
     }
 
     // Pindah Scene menggunakan String

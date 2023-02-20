@@ -8,11 +8,41 @@ public class OptionManager : MonoBehaviour
     public GameObject panelSuara, buttonSelectedSuara;
     public GameObject panelGrafik, buttonSelectedGrafik;
     public GameObject panelBahasa, buttonSelectedBahasa;
+    public static int indexOpsi;
+
+    private void Awake()
+    {
+        indexOpsi = PlayerPrefs.GetInt("opsi", 0);
+    }
+
+    private void Update()
+    {
+        if (indexOpsi == 0)
+        {
+            Kontrol();
+        }
+
+        if (indexOpsi == 1)
+        {
+            Suara();
+        }
+
+        if (indexOpsi == 2)
+        {
+            Grafik();
+        }
+
+        if (indexOpsi == 3)
+        {
+            Bahasa();
+        }
+    }
 
     public void Kontrol()
     {
         if (panelKontrol == true)
         {
+            indexOpsi = 0;
             panelKontrol.SetActive(true);
             panelSuara.SetActive(false);
             panelGrafik.SetActive(false);
@@ -21,6 +51,7 @@ public class OptionManager : MonoBehaviour
             buttonSelectedSuara.SetActive(false);
             buttonSelectedGrafik.SetActive(false);
             buttonSelectedBahasa.SetActive(false);
+            PlayerPrefs.SetInt("opsi", indexOpsi);
         }
     }
 
@@ -28,6 +59,7 @@ public class OptionManager : MonoBehaviour
     {
         if (panelSuara == true)
         {
+            indexOpsi = 1;
             panelGrafik.SetActive(false);
             panelBahasa.SetActive(false);
             panelKontrol.SetActive(false);
@@ -36,6 +68,7 @@ public class OptionManager : MonoBehaviour
             buttonSelectedSuara.SetActive(true);
             buttonSelectedGrafik.SetActive(false);
             buttonSelectedBahasa.SetActive(false);
+            PlayerPrefs.SetInt("opsi", indexOpsi);
         }
     }
 
@@ -43,6 +76,7 @@ public class OptionManager : MonoBehaviour
     {
         if (panelGrafik == true)
         {
+            indexOpsi = 2;
             panelBahasa.SetActive(false);
             panelKontrol.SetActive(false);
             panelSuara.SetActive(false);
@@ -51,6 +85,7 @@ public class OptionManager : MonoBehaviour
             buttonSelectedSuara.SetActive(false);
             buttonSelectedGrafik.SetActive(true);
             buttonSelectedBahasa.SetActive(false);
+            PlayerPrefs.SetInt("opsi", indexOpsi);
         }
     }
 
@@ -58,6 +93,7 @@ public class OptionManager : MonoBehaviour
     {
         if (panelBahasa == true)
         {
+            indexOpsi = 3;
             panelKontrol.SetActive(false);
             panelSuara.SetActive(false);
             panelGrafik.SetActive(false);
@@ -66,6 +102,7 @@ public class OptionManager : MonoBehaviour
             buttonSelectedSuara.SetActive(false);
             buttonSelectedGrafik.SetActive(false);
             buttonSelectedBahasa.SetActive(true);
+            PlayerPrefs.SetInt("opsi", indexOpsi);
         }
     }
 }
