@@ -23,6 +23,6 @@ public class DisplayTime : MonoBehaviour
         jam = System.DateTime.Now.Hour;
         menit = System.DateTime.Now.Minute;
         detik = System.DateTime.Now.Second;
-        display.text = "" + jam + " : " + menit + " : " + detik;
+        display.text = "" + jam + " : " + menit;
     }
 }

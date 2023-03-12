@@ -19,6 +19,14 @@ public class LightSwitch : MonoBehaviour, Interactable
     public void Switch()
     {
         isOn = !isOn;
+        if (isOn)
+        {
+            AudioManager.Instance.PlaySFX("TurnOn");
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX("TurnOff");
+        }
         UpdateLight();
     }
 

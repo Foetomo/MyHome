@@ -20,6 +20,7 @@ public class Tentang : MonoBehaviour
     {
         if (panelTentang == true)
         {
+            KlikSFX.Instance.Klik();
             panelTentang.SetActive(true);
             panelKredit.SetActive(false);
             buttonSelectedTentang.SetActive(true);
@@ -31,6 +32,7 @@ public class Tentang : MonoBehaviour
     {
         if (panelKredit == true)
         {
+            KlikSFX.Instance.Klik();
             panelTentang.SetActive(false);
             panelKredit.SetActive(true);
             buttonSelectedTentang.SetActive(false);

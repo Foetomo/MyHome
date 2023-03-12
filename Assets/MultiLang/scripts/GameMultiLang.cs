@@ -13,7 +13,7 @@ public class GameMultiLang : MonoBehaviour
 
 	public static Dictionary<String, String> Fields;
 
-	[SerializeField] string defaultLang = "en";
+	[SerializeField] string defaultLang = "id";
 
 
 	void Awake ()

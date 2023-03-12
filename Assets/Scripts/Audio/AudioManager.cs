@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
     public GameObject iconMuteOn, iconMuteOff;
+    //FootstepSystem fs;
 
     private void Awake()
     {
@@ -35,7 +36,10 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        //fs = FindObjectOfType<FootstepSystem>();
+
         PlayerPrefs.SetInt("MuteMusic", musicSource.mute ? 1 : 0);
+        PlayerPrefs.SetInt("MuteSFX", sfxSource.mute ? 1 : 0);
     }
 
     public void PlayMusic(string nama)
@@ -63,7 +67,8 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            sfxSource.PlayOneShot(s.clip);
+            sfxSource.clip = s.clip;
+            sfxSource.Play();
         }
     }
 
@@ -86,4 +91,5 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.volume = volume;
     }
+
 }

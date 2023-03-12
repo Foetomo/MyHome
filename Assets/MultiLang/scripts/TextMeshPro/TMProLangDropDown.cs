@@ -26,7 +26,7 @@ public class TMProLangDropDown : MonoBehaviour
 
 	void ApplyLanguageChanges ()
 	{
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene(1);
 	}
 
 	void OnDestroy ()

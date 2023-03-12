@@ -16,6 +16,7 @@ public class SceneLoading : MonoBehaviour
 
     public void LoadScene(string namaScene)
     {
+        AudioManager.Instance.PlaySFX("Klik");
         StartCoroutine(LoadSceneAsynchronously(namaScene));
     }
 

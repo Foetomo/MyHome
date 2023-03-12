@@ -13,6 +13,14 @@ public class Door : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        if (!animator.GetBool("Open"))
+        {
+            AudioManager.Instance.PlaySFX("OpenDoor");
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX("CloseDoor");
+        }
         animator.SetBool(nama, !animator.GetBool(nama));
     }
 

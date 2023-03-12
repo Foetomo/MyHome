@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     private bool mobileCrouch, mobileRun; //For mobile only
 
     [Header("Animator")]
-    public Animator animator;
+    //public Animator animator;
 
     private CharacterController charcc;
     private Vector2 Move, Look;
@@ -53,14 +53,20 @@ public class Movement : MonoBehaviour
 
     private float currentWeightCrouch, speed, requirementMoveZRun;
 
+    private FootstepSystem fs;
+    private float walk_step_distance = 0.4f;
+
     private void Start () {
         charcc = GetComponent<CharacterController>();
+        fs = GetComponent<FootstepSystem>();
+
+        fs.step_Distance = walk_step_distance;
         //control = GetComponent<ControlSensitivity>();
 
         
         if(controllerMode == ControllerMode.PC) { 
-            Cursor.visible = true; //menghilangkan cursor atau menyembunyikannya
-            Cursor.lockState = CursorLockMode.Confined; //mengkunci cursor agar tidak keluar dari game
+            //Cursor.visible = true; //menghilangkan cursor atau menyembunyikannya
+            //Cursor.lockState = CursorLockMode.Confined; //mengkunci cursor agar tidak keluar dari game
 
             //jangan menggunakan code ini jika controller mode nya mode android, karena analog mobile akan mengalami bug
         }
@@ -70,7 +76,7 @@ public class Movement : MonoBehaviour
 
     private void Update () {
         Inputed();
-        float s = ControlSensitivity.Instance.sensitivity;
+        //float s = ControlSensitivity.Instance.sensitivity;
         ControlSensitivity cs = FindObjectOfType<ControlSensitivity>();
         sensitivty = cs.sensitivity;
     }
@@ -83,7 +89,7 @@ public class Movement : MonoBehaviour
         Looking();
         Moving();
         Transition();
-        Animating();
+        //Animating();
     }
 
     private void Inputed () {
@@ -103,7 +109,7 @@ public class Movement : MonoBehaviour
                 isCrouching = Input.GetKey(KeyCode.C) && isRunning == false;
 
                 canvasAndroid.SetActive(false);
-            break;
+                break;
             case ControllerMode.Android : 
                 requirementMoveZRun = InputManager.instance.joystickMobile.Vertical * walkSpeed; 
 
@@ -146,12 +152,12 @@ public class Movement : MonoBehaviour
         CameraHolder.localEulerAngles = new Vector3(Look.y, CameraHolder.localEulerAngles.y, CameraHolder.localEulerAngles.z); //mengrotasikan bagian y (x = vertical bagian rotasi) 
     }
 
-    private void Animating () {
+    /*private void Animating () {
         if(animator == null) return;
         float magnitude = charcc.velocity.magnitude/charcc.velocity.magnitude;
         animator.SetFloat("walkX", Move.x * magnitude);
         animator.SetFloat("walkZ", Move.y * magnitude);
-    }
+    }*/
 
     public void ButtonMobile (string act) {
         if(act == "run") {

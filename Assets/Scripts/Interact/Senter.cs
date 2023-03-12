@@ -9,7 +9,7 @@ public class Senter : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     void Update()
@@ -25,11 +25,29 @@ public class Senter : MonoBehaviour
             if (isAktif)
             {
                 senterObjek.SetActive(true);
+                AudioManager.Instance.PlaySFX("FlashlightOn");
             }
             else
             {
                 senterObjek.SetActive(false);
+                AudioManager.Instance.PlaySFX("FlashlightOff");
             }
         }
     }
+
+    public void Flashlight()
+    {
+        isAktif = !isAktif;
+        if (isAktif)
+        {
+            senterObjek.SetActive(true);
+            AudioManager.Instance.PlaySFX("FlashlightOn");
+        }
+        else
+        {
+            senterObjek.SetActive(false);
+            AudioManager.Instance.PlaySFX("FlashlightOff");
+        }
+    }
+    
 }

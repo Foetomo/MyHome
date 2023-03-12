@@ -52,6 +52,7 @@ public class OptionManager : MonoBehaviour
             buttonSelectedGrafik.SetActive(false);
             buttonSelectedBahasa.SetActive(false);
             PlayerPrefs.SetInt("opsi", indexOpsi);
+
         }
     }
 
