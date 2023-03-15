@@ -8,7 +8,7 @@ public class SFXAlam : MonoBehaviour
     public static SFXAlam Instance;
     public AudioClip[] soundAlam;
     public AudioSource audioSourceAlam;
-    private int currentSFXIndex = 0;
+    //private int currentSFXIndex = 0;
 
     // Start is called before the first frame update
     void Start()
