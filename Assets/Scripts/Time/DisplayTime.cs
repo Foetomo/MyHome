@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,9 +8,9 @@ using UnityEngine.UI;
 public class DisplayTime : MonoBehaviour
 {
     public TextMeshProUGUI display;
-    public float jam;
-    public float menit;
-    public float detik;
+    private string jam;
+    private string menit;
+    private string detik;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,15 @@ public class DisplayTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        jam = System.DateTime.Now.Hour;
-        menit = System.DateTime.Now.Minute;
-        detik = System.DateTime.Now.Second;
-        display.text = "" + jam + " : " + menit;
+        JamDigital();
+    }
+
+    void JamDigital()
+    {
+        DateTime waktuSekarang = DateTime.Now;
+        jam = waktuSekarang.Hour.ToString().PadLeft(2, '0');
+        menit = waktuSekarang.Minute.ToString().PadLeft(2, '0');
+        detik = waktuSekarang.Second.ToString().PadLeft(2, '0');
+        display.text = jam + " : " + menit;
     }
 }

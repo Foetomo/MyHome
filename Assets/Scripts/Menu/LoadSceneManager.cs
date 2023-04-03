@@ -19,8 +19,8 @@ public class LoadSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        muteM = PlayerPrefs.GetInt("muteMusic", 0);
-        muteS = PlayerPrefs.GetInt("muteSFX", 0);
+        muteM = PlayerPrefs.GetInt("muteMusic", 1);
+        muteS = PlayerPrefs.GetInt("muteSFX", 1);
         valueMusic = PlayerPrefs.GetFloat("VolumeMusic", valueMusic);
         valueSfx = PlayerPrefs.GetFloat("VolumeSfx", valueSfx);
         valueControl = PlayerPrefs.GetFloat("Control", valueControl);
@@ -53,8 +53,8 @@ public class LoadSceneManager : MonoBehaviour
             }
         }
 
-        muteMusicOn.SetActive(true);
-        muteSfxOn.SetActive(true);
+        muteMusicOn.SetActive(false);
+        muteSfxOn.SetActive(false);
 
         if (muteM == 0)
         {
